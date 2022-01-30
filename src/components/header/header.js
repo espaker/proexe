@@ -4,8 +4,10 @@ import { MDBNavbar } from "mdbreact";
 
 function Header() {
     return (
-        <MDBNavbar color="elegant-color" flex> 
-
+        <MDBNavbar className="header" color="elegant-color" dark flex> 
+            <h2 className="white-text">
+                <strong>Dashboard</strong>
+            </h2>
         </MDBNavbar>
     )
 }

@@ -1,0 +1,11 @@
+.users_cardtitle {
+    padding: 5px;
+}
+
+.users_card_body {
+    padding: 0 5px 0 5px;
+}
+
+.users_card {
+    height: 100%;
+}
