@@ -1,43 +1,15 @@
 import { createStore } from 'redux';
 
 const INITIAL_STATE = {
-    data: {
-        columns: [
-            {
-                label: 'Id',
-                field: 'id'
-            },
-            {
-                label: 'Name',
-                field: 'name'
-            },
-            {
-                label: 'Username',
-                field: 'username'
-            },
-            {
-                label: 'City',
-                field: 'city'
-            },
-            {
-                label: 'E-Mail',
-                field: 'email'
-            },
-            {
-                label: 'Actions',
-                field: 'actions',
-                sort: 'disabled',
-                width: 10
-            }
-        ],
-        rows: []
-    }
+    data: []
 };
 
 function user_list(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'UPDATE_ROWS':
-            return state;
+            const newState = {...state}
+            newState.data = action.data
+            return newState;
         default:
             return state;
     }

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
 import { 
     MDBCard, 
     MDBCardBody, 
@@ -10,11 +11,16 @@ import {
     MDBIcon 
 } from "mdbreact";
 
+import update_rows from '../../store/actions'
+
 import UsersTable from './userstable'
 
 import './users.css'
 
-function Users() {
+function Users({dispatch}) {
+    
+    useEffect(() => update_rows(dispatch))
+
     return (
         <MDBCard className='users_card h-100'>
             <MDBCardHeader className='users_cardtitle'>
@@ -39,4 +45,4 @@ function Users() {
     )
 }
 
-export default Users;
+export default connect()(Users);
