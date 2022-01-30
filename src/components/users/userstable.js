@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useState }from 'react';
 import { connect } from 'react-redux'
-import { MDBDataTableV5 } from "mdbreact";
+import { MDBDataTableV5, MDBTooltip, MDBBtnGroup, MDBBtn, MDBIcon } from "mdbreact";
 
-const UsersTable = ({rows}) => {
+const UsersTable = ({rows, userModal, deleteModal}) => {
     const [datatableData, setDatatableData] = useState({
         columns: [
             {
@@ -44,16 +44,27 @@ const UsersTable = ({rows}) => {
                 username: row.username,
                 city: row.address.city,
                 email: row.email,
-                actions: 'ls',
-
+                actions: (
+                    <MDBBtnGroup size='sm'>
+                        <MDBTooltip> 
+                            <MDBBtn color="primary" onClick={() => userModal('Edit', row._id)}><MDBIcon icon="edit" size='lg'/></MDBBtn>
+                            <div>Edit</div>
+                        </MDBTooltip>
+                        <MDBTooltip>
+                            <MDBBtn color="danger" onClick={() => deleteModal(row.name, row._id)}><MDBIcon icon="trash" size='lg'/></MDBBtn>
+                            <div>Delete</div>
+                        </MDBTooltip>
+                    </MDBBtnGroup>
+                )
             }))
             return newData
         })
-    }, [rows])
+    }, [rows, userModal, deleteModal])
 
     return (
         <MDBDataTableV5 
             data={datatableData}
+            noRecordsFoundLabel='No Users Found' 
             responsive
             hover 
             striped
